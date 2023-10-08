@@ -1,6 +1,6 @@
 @extends('back.layout.template')
 
-@section('title', 'Dasboard - Admin')
+@section('title', 'Dasboard Page- Admin')
 
 @section('content')
     
