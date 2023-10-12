@@ -1,8 +1,10 @@
 
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
-  <head><script src="https://getbootstrap.com/docs/5.3/assets/js/color-modes.js"></script>
+  <head>
+    <script src="https://getbootstrap.com/docs/5.3/assets/js/color-modes.js"></script>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">

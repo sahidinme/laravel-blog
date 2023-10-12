@@ -34,15 +34,9 @@
                 
             </div>
             @endif
-
-            {{-- Alert success --}}
-            @if (session('success'))
-            <div class="my-3">         
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div> 
-            </div>
-            @endif
+            
+            {{-- success alert --}}
+            <div class="swal" data-swal="{{ session('success') }}"></div>
 
             <table class="table table-striped table-bordered" id="dataTable">
                 <thead>
@@ -72,6 +66,61 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    {{-- alert sucess --}}
+    <script>
+        const swal = $('.swal').data('swal');
+        if (swal) {
+            Swal.fire({
+                'title'             : 'Success',
+                'text'              : swal,
+                'icon'              : 'success',
+                'showConfirmButton' : false,
+                'timer'             : 2000
+            })
+        }
+
+        function deleteArticle(e){
+            let id = e.getAttribute('data-id');
+
+            Swal.fire({
+                title               : 'Delete Article',
+                text                : "Are you sure?",
+                icon                : 'question',
+                showCancelButton    : true,
+                confirmButtonColor  : '#d33',
+                cancelButtonColor   : '#3085d6',
+                confirmButtonText   : 'Delete!',
+                cancelButtonText    : 'Cancel'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        headers:{
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type        : 'DELETE',
+                        url         : '/article/' + id,
+                        dataType    : "json",
+                        success     : function(response){
+                            Swal.fire({
+                                title               : 'Success',
+                                text                : response.message,
+                                icon                : 'success',
+                            }).then((result) => {
+                                window.location.href = '/article';
+                            })
+                        },
+                        error : function(xhr, ajaxOptions, thrownError){
+                            alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                        } 
+                    });
+                }
+            })
+            
+        }
+    </script>
+
     <script>
         // new DataTable('#dataTable');
         $(document).ready(function(){
