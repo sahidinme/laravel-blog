@@ -26,7 +26,7 @@
                 </tr>
                 <tr>
                     <th>Description</th>
-                    <td>: {{ $article->desc }}</td>
+                    <td>{!! $article->desc !!}</td>
                 </tr>
                 <tr>
                     <th style="vertical-align: top;">Image</th>
