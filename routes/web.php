@@ -12,24 +12,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
 
-Route::resource('article', ArticleController::class);
+Route::middleware('auth')->group(function(){
 
-Route::resource('/categories', CategoryController::class)->only([
-    'index', 'store', 'update', 'destroy'
-]);
+    Route::get('/dashboard', [DashboardController::class, 'index']);
 
-Route::resource('/users', UserController::class);
+    Route::resource('article', ArticleController::class);
 
-// Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
-//     \UniSharp\LaravelFilemanager\Lfm::routes();
-// });
+    Route::resource('/categories', CategoryController::class)->only([
+        'index', 'store', 'update', 'destroy'
+    ]);
 
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['guest']], function () {
-    \UniSharp\LaravelFilemanager\Lfm::routes();
+    Route::resource('/users', UserController::class);
+
+    Route::group(['prefix' => 'laravel-filemanager'], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
+
 });
+
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    //     \UniSharp\LaravelFilemanager\Lfm::routes();
+    // });

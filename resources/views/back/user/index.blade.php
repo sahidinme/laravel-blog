@@ -69,14 +69,14 @@
         </div>
     </main>
 
-    {{-- <!-- Modal create -->
-    @include('back.category.create-modal')
+    <!-- Modal create -->
+    @include('back.user.create-modal')
 
     <!-- Modal update -->
-    @include('back.category.update-modal')
+    @include('back.user.update-modal')
 
-    <!-- Modal update -->
-    @include('back.category.delete-modal') --}}
+    <!-- Modal delete -->
+    @include('back.user.delete-modal')
 
 
 @endsection
