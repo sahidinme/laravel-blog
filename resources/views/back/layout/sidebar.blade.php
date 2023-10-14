@@ -18,12 +18,17 @@
               Articles
             </a>
           </li>
+
+          {{-- Jika role bukan 1 (admin) tidak bisa akses categorie --}}
+          @if (auth()->user()->role == 1 )
           <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2" href="{{ url('categories') }}">
               <svg class="bi"><use xlink:href="#cart"/></svg>
               Categories
             </a>
           </li>
+          @endif
+
           <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2" href="{{ url('users') }}">
               <svg class="bi"><use xlink:href="#people"/></svg>

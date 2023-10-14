@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function(){
 
     Route::resource('/categories', CategoryController::class)->only([
         'index', 'store', 'update', 'destroy'
-    ]);
+    ])->middleware('UserAccess:1'); // kalo role bukan 1 (admin) maka tidak bisa akses
 
     Route::resource('/users', UserController::class);
 
