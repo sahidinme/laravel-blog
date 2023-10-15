@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [HomeController::class, 'index']);
+Route::post('/articles/search', [HomeController::class, 'index'])->name('search');
+
 
 
 Route::middleware('auth')->group(function(){
