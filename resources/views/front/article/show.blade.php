@@ -1,6 +1,8 @@
 
 @extends('front.layout.template')
 
+@section('title', $article->title)
+
 @section('content')
     
         <!-- Page content-->
@@ -11,10 +13,18 @@
 
                     <div class="card mb-4">
                         <a href="{{ url('p/'.$article->slug) }}">
-                            <img class="card-img-top featured-img" src="{{ asset('storage/back/'.$article->img) }}" alt="..." />
+                            <img class="card-img-top featured-img" src="{{ asset('storage/back/'.$article->img) }}" alt="{{ $article->title }}" />
                         </a>
                         <div class="card-body">
-                            <div class="small text-muted">{{ $article->created_at->format('d-m-y') }}</div>
+                            <div class="small text-muted">
+                                <span class="ml-2">{{ $article->created_at->format('d-m-y') }}</span>
+                                <span class="ml-2">
+                                    <a href="{{ url('category/'.$article->Category->slug) }}">
+                                        {{ $article->Category->name }}
+                                    </a>
+                                </span>
+                                <span class="ml-2">{{ $article->views }}x</span>
+                            </div>
                             <h1 class="card-title">{{ $article->title }}</h1>
                             <p class="card-text">
                                 {!! $article->desc !!}

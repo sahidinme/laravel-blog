@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="author" content="Sahidin" />
 
     @stack('meta-seo')
 
-    <title>Laravel Blog</title>
+    <title>@yield('title')</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="{{ asset('front/img/favicon.ico') }}" />
     <!-- Core theme CSS (includes Bootstrap)-->

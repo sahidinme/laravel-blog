@@ -1,7 +1,7 @@
 
 @extends('front.layout.template')
 
-@section('title', 'Article')
+@section('title', 'Category '. $category)
 
 @section('content')
     
@@ -18,9 +18,9 @@
                 </form>
             </div>
 
-            @if ($keyword)
-                <p>Showing articles with keyword : <b>{{ $keyword }}</b></p>
-            @endif
+            
+                <p>Showing articles with category : <b>{{ $category }}</b></p>
+            
 
             <div class="row">
 

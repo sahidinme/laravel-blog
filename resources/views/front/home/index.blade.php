@@ -1,6 +1,8 @@
 
 @extends('front.layout.template')
 
+@section('title', 'Laravel Blog')
+
 @section('content')
     
         <!-- Page content-->

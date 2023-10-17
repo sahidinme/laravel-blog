@@ -29,15 +29,21 @@ class ArticleController extends Controller
         return view('front.article.index', [
             // menampilkan semua artikel yang berstatus publish (1)
             'articles' => $articles,
-            'keyword'  => $keyword
+            'keyword'  => $keyword,
+            'category_navbar' => Category::latest()->take(3)->get()
         ]);
     }
 
     public function show($slug)
     {
+        $article = Article::whereSlug($slug)->firstOrFail();
+        $article->increment('views');
+
         return view('front.article.show', [
-            'article' => Article::whereSlug($slug)->first(),
-            'categories' => Category::latest()->get()
+            'article' => $article,
+            'categories' => Category::latest()->get(),
+            'category_navbar' => Category::latest()->take(3)->get()
+
         ]);
     }
 }
