@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Front;
 
 use App\Models\Article;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
